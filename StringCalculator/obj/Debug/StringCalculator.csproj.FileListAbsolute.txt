@@ -1,0 +1,7 @@
+C:\Koderex\Training\StringCalculator\StringCalculator\bin\Debug\StringCalculator.exe.config
+C:\Koderex\Training\StringCalculator\StringCalculator\bin\Debug\StringCalculator.exe
+C:\Koderex\Training\StringCalculator\StringCalculator\bin\Debug\StringCalculator.pdb
+C:\Koderex\Training\StringCalculator\StringCalculator\obj\Debug\StringCalculator.csprojAssemblyReference.cache
+C:\Koderex\Training\StringCalculator\StringCalculator\obj\Debug\StringCalculator.csproj.CoreCompileInputs.cache
+C:\Koderex\Training\StringCalculator\StringCalculator\obj\Debug\StringCalculator.exe
+C:\Koderex\Training\StringCalculator\StringCalculator\obj\Debug\StringCalculator.pdb
