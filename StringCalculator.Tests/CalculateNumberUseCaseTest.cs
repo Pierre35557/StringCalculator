@@ -1,111 +1,105 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
-using StringCalculator.Interfaces;
+using StringCalculator;
 
 namespace StringCalculator.Tests
 {
     [TestFixture]
     public class CalculateNumberUseCaseTest
     {
-        CalculateNumberService calculateNumberService = new CalculateNumberService();
-
-        //ICalculateNumberService calculateNumberService;
-
-        //public CalculateNumberUseCaseTest(ICalculateNumberService calculateNumberService)
-        //{
-        //    this.calculateNumberService = calculateNumberService;
-        //}
-
         [Test]
-        public void Add_Numbers_With_Empty_String()
+        public void Should_Return_Zero_When_Empty_String()
         {
             //Arrange
+            var calculateNumberService = new CalculateNumberService();
             string numbers = "";
             int expectedOutput = 0;
 
             //Act
-            int actualOutput = calculateNumberService.Add(numbers);
+            var actualOutput = calculateNumberService.Add(numbers);
 
             //Assert
             Assert.AreEqual(expectedOutput, actualOutput);
         }
 
         [Test]
-        public void Add_Numbers_With_One_Value()
+        public void Add_Numbers_With_Single_Value()
         {
-            //Arrange
+            //Arrange 
+            var calculateNumberService = new CalculateNumberService();
             string numbers = "1";
             int expectedOutput = 1;
 
             //Act
-            int actualOutput = calculateNumberService.Add(numbers);
+            var actualOutput = calculateNumberService.Add(numbers);
 
             //Assert
             Assert.AreEqual(expectedOutput, actualOutput);
         }
 
         [Test]
-        public void Add_Numbers_With_Two_Values()
+        public void Add_Numbers_With_Multiple_Values()
         {
-            //Arrange
+            //Arrange 
+            var calculateNumberService = new CalculateNumberService();
             string numbers = "1,2";
             int expectedOutput = 3;
 
             //Act
-            int actualOutput = calculateNumberService.Add(numbers);
+            var actualOutput = calculateNumberService.Add(numbers);
 
             //Assert
             Assert.AreEqual(expectedOutput, actualOutput);
         }
 
         [Test]
-        public void Add_Numbers_With_Any_Amount_Of_Values()
+        public void Add_Numbers_With_New_Lines()
         {
-            //Arrange
-            string numbers = "1,2,5,8,10,15,6";
-            int expectedOutput = 47;
-
-            //Act
-            int actualOutput = calculateNumberService.Add(numbers);
-
-            //Assert
-            Assert.AreEqual(expectedOutput, actualOutput);
-        }
-
-        [Test]
-        public void Add_Numbers_With_New_Line_Included_In_Value()
-        {
-            //Arrange
+            //Arrange 
+            var calculateNumberService = new CalculateNumberService();
             string numbers = "1\n,2,3";
             int expectedOutput = 6;
 
             //Act
-            int actualOutput = calculateNumberService.Add(numbers);
+            var actualOutput = calculateNumberService.Add(numbers);
 
             //Assert
             Assert.AreEqual(expectedOutput, actualOutput);
         }
 
         [Test]
-        public void Add_Numbers_With_Delimeter_Included_In_Value()
+        public void Add_Numbers_With_New_Delimeter()
         {
-            //Arrange
-            string numbers = ";\n1;2";
+            //Arrange 
+            var calculateNumberService = new CalculateNumberService();
+            string numbers = ";\n,1,2";
             int expectedOutput = 3;
 
             //Act
-            int actualOutput = calculateNumberService.Add(numbers);
+            var actualOutput = calculateNumberService.Add(numbers);
 
             //Assert
             Assert.AreEqual(expectedOutput, actualOutput);
+        }
+
+        [Test]
+        public void Should_Throw_Exception_With_Negative_Numbers()
+        {
+            //Arrange 
+            var calculateNumberService = new CalculateNumberService();
+            string numbers = "-1, -2, 3";
+
+            //Assert
+            Assert.Throws<Exception>(() => calculateNumberService.Add(numbers));
         }
 
         [Test]
         public void Add_Numbers_With_Values_Over_1000()
         {
             //Arrange
-            string numbers = "1001, 3000, 2";
+            var calculateNumberService = new CalculateNumberService();
+            string numbers = "1001, 2";
             int expectedOutput = 2;
 
             //Act
@@ -114,55 +108,5 @@ namespace StringCalculator.Tests
             //Assert
             Assert.AreEqual(expectedOutput, actualOutput);
         }
-
-        [Test]
-        public void Add_Numbers_With_Lengthy_Delimeters()
-        {
-            //Arrange
-            string numbers = "[***]\n1***2***3";
-            int expectedOutput = 6;
-
-            //Act
-            int actualOutput = calculateNumberService.Add(numbers);
-
-            //Assert
-            Assert.AreEqual(expectedOutput, actualOutput);
-        }
-
-        [Test]
-        public void Add_Numbers_With_Multiple_Delimeters()
-        {
-            //Arrange
-            string numbers = "[*][%]\n1*2%3";
-            int expectedOutput = 6;
-
-            //Act
-            int actualOutput = calculateNumberService.Add(numbers);
-
-            //Assert
-            Assert.AreEqual(expectedOutput, actualOutput);
-        }
-
-        [Test]
-        public void Add_Numbers_With_Multiple_Lengthy_Delimeters()
-        {
-            //Arrange
-            string numbers = "[***][%%%]\n1***2%%%3";
-            int expectedOutput = 6;
-
-            //Act
-            int actualOutput = calculateNumberService.Add(numbers);
-
-            //Assert
-            Assert.AreEqual(expectedOutput, actualOutput);
-        }
-
-        //[Test]
-        //public void Throw_Exception_When_Negative_Number()
-        //{
-        //    //Arrange
-        //    var numbers = "-1, -10";
-        //    Assert.Throws<Exception>(() => calculateNumberService.Add(numbers), "negatives not allowed");
-        //}
     }
 }

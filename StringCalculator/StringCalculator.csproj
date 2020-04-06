@@ -43,8 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\CalculateNumberService.cs" />
-    <Compile Include="Interfaces\ICalculateNumberService.cs" />
+    <Compile Include="CalculateNumberService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

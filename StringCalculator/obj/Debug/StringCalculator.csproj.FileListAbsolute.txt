@@ -5,3 +5,10 @@ C:\Koderex\Training\StringCalculator\StringCalculator\obj\Debug\StringCalculator
 C:\Koderex\Training\StringCalculator\StringCalculator\obj\Debug\StringCalculator.csproj.CoreCompileInputs.cache
 C:\Koderex\Training\StringCalculator\StringCalculator\obj\Debug\StringCalculator.exe
 C:\Koderex\Training\StringCalculator\StringCalculator\obj\Debug\StringCalculator.pdb
+C:\Git Projects\StringCalculator\StringCalculator\bin\Debug\StringCalculator.exe.config
+C:\Git Projects\StringCalculator\StringCalculator\bin\Debug\StringCalculator.exe
+C:\Git Projects\StringCalculator\StringCalculator\bin\Debug\StringCalculator.pdb
+C:\Git Projects\StringCalculator\StringCalculator\obj\Debug\StringCalculator.csprojAssemblyReference.cache
+C:\Git Projects\StringCalculator\StringCalculator\obj\Debug\StringCalculator.csproj.CoreCompileInputs.cache
+C:\Git Projects\StringCalculator\StringCalculator\obj\Debug\StringCalculator.exe
+C:\Git Projects\StringCalculator\StringCalculator\obj\Debug\StringCalculator.pdb
