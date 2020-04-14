@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
-using NUnit.Framework;
-using StringCalculator;
+﻿using NUnit.Framework;
+using System;
 
 namespace StringCalculator.Tests
 {
@@ -9,85 +7,91 @@ namespace StringCalculator.Tests
     public class CalculateNumberUseCaseTest
     {
         [Test]
-        public void Should_Return_Zero_When_Empty_String()
+        public void GivenNumber_AndEmptyStringInValue_ShouldReturn0()
         {
+            var calculateNumberService = new CalculateNumberService();
+
             //Arrange
-            var calculateNumberService = new CalculateNumberService();
             string numbers = "";
-            int expectedOutput = 0;
 
             //Act
-            var actualOutput = calculateNumberService.Add(numbers);
+            int actual = calculateNumberService.Add(numbers);
+            int expected = 0;
 
             //Assert
-            Assert.AreEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void Add_Numbers_With_Single_Value()
+        public void GivenNumber_AndOneValue_ShouldReturn1()
         {
-            //Arrange 
             var calculateNumberService = new CalculateNumberService();
+
+            //Arrange
             string numbers = "1";
-            int expectedOutput = 1;
 
             //Act
-            var actualOutput = calculateNumberService.Add(numbers);
+            int actual = calculateNumberService.Add(numbers);
+            int expected = 1;
 
             //Assert
-            Assert.AreEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void Add_Numbers_With_Multiple_Values()
+        public void GivenNumber_AndMultipleValues_ShouldReturn3()
         {
-            //Arrange 
             var calculateNumberService = new CalculateNumberService();
-            string numbers = "1,2";
-            int expectedOutput = 3;
+
+            //Arrange
+            string numbers = "1, 2";
 
             //Act
-            var actualOutput = calculateNumberService.Add(numbers);
+            int actual = calculateNumberService.Add(numbers);
+            int expected = 3;
 
             //Assert
-            Assert.AreEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void Add_Numbers_With_New_Lines()
+        public void GivenNumber_AndNewLineInValue_ShouldReturn6()
         {
-            //Arrange 
             var calculateNumberService = new CalculateNumberService();
-            string numbers = "1\n,2,3";
-            int expectedOutput = 6;
+
+            //Arrange
+            string numbers = "1\n2,3";
 
             //Act
-            var actualOutput = calculateNumberService.Add(numbers);
+            int actual = calculateNumberService.Add(numbers);
+            int expected = 6;
 
             //Assert
-            Assert.AreEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void Add_Numbers_With_New_Delimeter()
+        public void GivenNumber_AndCustomDelimiterInValue_ShouldReturn6()
         {
-            //Arrange 
             var calculateNumberService = new CalculateNumberService();
-            string numbers = ";\n,1,2";
-            int expectedOutput = 3;
+
+            //Arrange
+            string numbers = ";\n1;2;3";
 
             //Act
-            var actualOutput = calculateNumberService.Add(numbers);
+            int actual = calculateNumberService.Add(numbers);
+            int expected = 6;
 
             //Assert
-            Assert.AreEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
-        public void Should_Throw_Exception_With_Negative_Numbers()
+        public void GivenNumber_AndNegativeValue_ShouldReturnException()
         {
-            //Arrange 
             var calculateNumberService = new CalculateNumberService();
+
+            //Arrange
             string numbers = "-1, -2, 3";
 
             //Assert
@@ -95,18 +99,51 @@ namespace StringCalculator.Tests
         }
 
         [Test]
-        public void Add_Numbers_With_Values_Over_1000()
+        public void GivenNumber_AndValueLargerThan1000_ShouldReturn2()
         {
-            //Arrange
             var calculateNumberService = new CalculateNumberService();
+
+            //Arrange
             string numbers = "1001, 2";
-            int expectedOutput = 2;
 
             //Act
-            int actualOutput = calculateNumberService.Add(numbers);
+            int actual = calculateNumberService.Add(numbers);
+            int expected = 2;
 
             //Assert
-            Assert.AreEqual(expectedOutput, actualOutput);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void GivenNumber_AndDelimiterOfAnyLength_ShouldReturn6()
+        {
+            var calculateNumberService = new CalculateNumberService();
+
+            //Arrange
+            string numbers = "[***]\n1***2***3";
+
+            //Act
+            int actual = calculateNumberService.Add(numbers);
+            int expected = 6;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void GivenNumber_AndMultipleDelimiters_ShouldReturn6()
+        {
+            var calculateNumberService = new CalculateNumberService();
+
+            //Arrange
+            string numbers = "[*][%]\n1*2%3";
+
+            //Act
+            int actual = calculateNumberService.Add(numbers);
+            int expected = 6;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
         }
     }
 }

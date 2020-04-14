@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -13,21 +12,23 @@ namespace StringCalculator
             if (string.IsNullOrEmpty(numbers))
                 return 0;
 
-            var delimeters = new List<string>() { ",", "\n" };
+            var delimiters = new List<string>() { ",", "\n", "[", "]"};
 
-            if (!char.IsDigit(numbers[0]) && numbers[0] != '-')
-                delimeters.Add(numbers[0].ToString());
+            var matches = Regex.Matches(numbers, @"\[([^]]*)\]").Cast<Match>().Select(x => x.Groups[1].Value).ToList();
 
-            var values = numbers.Split(delimeters.ToArray(), StringSplitOptions.RemoveEmptyEntries).ToList().ConvertAll(int.Parse);
+            if(matches.Count > 0)
+                delimiters.AddRange(matches);
+            else if (!char.IsDigit(numbers[0]) && numbers[0] != '-')
+                delimiters.Add(numbers[0].ToString());
 
-            if (values.Any(number => number < 0))
-            {
-                throw new Exception($"negatives not allowed: {string.Join(",", values.Where(number => number < 0))}");
-            }
+            var sumOfNumbers = numbers.Split(delimiters.ToArray(), StringSplitOptions.RemoveEmptyEntries).ToList().ConvertAll(int.Parse);
 
-            values.RemoveAll(c => c > 1000);
+            if (sumOfNumbers.Any(num => num < 0))
+                throw new Exception($"Negatives are not allow: {string.Join(",", sumOfNumbers.Where(num => num < 0))}");
 
-            return values.Sum();
+            sumOfNumbers.RemoveAll(num => num > 1000);
+
+            return sumOfNumbers.Sum();
         }
     }
 }
